@@ -1,12 +1,12 @@
 <template>
   <button class="
-    darkmode 
     fixed 
     p-4
     m-px
     z-10 
     top-4 
     right-8 
+    bg-white
     rounded-full 
     cursor-pointer"
   />
@@ -20,7 +20,6 @@
   import { ref } from 'vue'
 
   let scroll = ref(0)
-  const clip = ref(null)
   let buttonEnabled = ref(true)
 
   const scrollbind = e => e.addEventListener('scroll', () => {
@@ -30,7 +29,7 @@
   })
 
   function handleClick() {
-    if (!buttonEnabled || !clip) return
+    if (!buttonEnabled) return
     
     buttonEnabled = false
     
@@ -74,28 +73,21 @@
     color: var(--color);
     background: var(--background);
   }
-  body .container:not(.dark) {
-    --background: #a9b665;
+
+  .container:not(.dark) {
     --color: #323133;
+    --accent: #bf263c;
     --cardtext: #323133;
     --cardtext2: #3c3b3d;
+    --background: #a9b665;
     --cardshadow: rgba(0, 0, 0, 0.1);
-    --accent: #bf263c;
   }
-  body .container.dark {
-    --background: #282828;
+  .container.dark {
     --color: #f5f7fa;
+    --accent: #d8334a;
     --cardtext: #f5f7fa;
     --cardtext2: #e6e9ed;
+    --background: #282828;
     --cardshadow: rgba(0, 0, 0, 0.1);
-    --accent: #d8334a;
-  }
-  body .container .darkmode {
-    color: var(--accent);
-    transition: 0.25s -0.05s;
-    box-shadow: 0 0 1rem -0.25rem var(--accent), inset 0 0 1rem -0.75rem var(--accent);
-  }
-  body .container .darkmode:hover {
-    box-shadow: 0 0 1rem -0.25rem var(--accent), inset 0 0 1rem -0.25rem var(--accent);
   }
 </style>

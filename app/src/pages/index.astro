@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Search from '../components/Search.vue'
 import ThemeSwitch from '../components/ThemeSwitch.vue'
 ---
 
 <Layout title='Startup page'>
-  <main id='container' class="
+  <main id='container' 
+    class="
     container 
     min-w-full 
     flex 
@@ -13,6 +15,8 @@ import ThemeSwitch from '../components/ThemeSwitch.vue'
     left-0 
     right-0 
     bottom-0">
+
+    <Search client:only />
     <ThemeSwitch client:only />
   </main>
 </Layout>
