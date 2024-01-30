@@ -1,7 +1,7 @@
 <template>
   <button class="
     fixed 
-    p-4
+    p-3
     m-px
     z-10 
     top-4 
@@ -9,11 +9,12 @@
     bg-white
     rounded-full 
     cursor-pointer"
-  />
-  <div 
-    ref='clip'
-    class='clip fixed top-12 right-12 w-0 h-0 z-2 rounded-full' 
-  />
+  >
+    <div 
+      ref='clip'
+      class='clip fixed top-12 right-12 w-0 h-0 z-2 rounded-full' 
+    />
+  </button>
 </template>
 
 <script setup>

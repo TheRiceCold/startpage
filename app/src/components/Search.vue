@@ -10,7 +10,7 @@
         ref='inputRef'
         spellcheck='false' 
         placeholder='search' 
-        class="border-0 outilne-0 w-full text-[#d4be98] bg-none tracking-[1px]"
+        class="outline-none border-none w-full"
       />
       <ul 
         ref='searchEnginesRef' 
@@ -20,8 +20,7 @@
           left-0 
           list-none 
           top-[50px] 
-          m-[1em 0 0 0]
-          text-[rgba(212, 190, 152, 0.5)]">
+          m-[1em 0 0 0]">
         <li v-for='(_, key) in searchEngines'>
           <p :title='searchEngines[key][1]'>@{{ key }}</p>
         </li>
@@ -34,8 +33,11 @@
   import { ref, onMounted } from 'vue'
 
   const searchEngines = {
+    r: ['https://reddit.com/r/', 'Reddit'],
     g: ['https://google.com/search?q=', 'Google'],
     y: ['https://youtube.com/results?search_query=', 'Youtube'],
+    p: ['https://www.pinterest.es/search/pins/?q=', 'Pinterest'],
+    gh: ["https://github.com/search?type=repositories&q=", "GitHub"],
     np: ['https://search.nixos.org/packages?channel=unstable&query=', 'Nix Packages'],
   }
 
@@ -85,7 +87,6 @@
     align-items: center;
     justify-content: center;
     width: calc(100% - 2px);
-    background: rgb(24 24 29 / 80%);
     visibility: hidden;
     top: -100%;
     backdrop-filter: blur(5px);
@@ -99,6 +100,8 @@
 
   #search input {
     padding: .5em 0;
+    background: none;
+    letter-spacing: 1px;
     box-shadow: inset 0 -2px #737373;
     font: 500 22px 'Roboto', sans-serif;
   }

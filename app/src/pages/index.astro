@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Search from '../components/Search.vue'
+import Bento from '../components/bento/main.vue'
 import ThemeSwitch from '../components/ThemeSwitch.vue'
 ---
 
@@ -9,7 +10,11 @@ import ThemeSwitch from '../components/ThemeSwitch.vue'
     class="
     container 
     min-w-full 
+    min-h-screen
     flex 
+    items-center
+    justify-center
+
     fixed 
     top-0 
     left-0 
@@ -18,5 +23,7 @@ import ThemeSwitch from '../components/ThemeSwitch.vue'
 
     <Search client:only />
     <ThemeSwitch client:only />
+
+    <Bento />
   </main>
 </Layout>
