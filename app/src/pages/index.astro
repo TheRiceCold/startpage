@@ -5,7 +5,7 @@ import Bento from '../components/bento/main.vue'
 import ThemeSwitch from '../components/ThemeSwitch.vue'
 ---
 
-<Layout title='Startup page'>
+<Layout title="Wolly's startpage">
   <main id='container' 
     class="
     container 
@@ -21,9 +21,9 @@ import ThemeSwitch from '../components/ThemeSwitch.vue'
     right-0 
     bottom-0">
 
+    <script src='../js/keybinds.js' />
     <Search client:only />
     <ThemeSwitch client:only />
-
-    <Bento />
+    <Bento client:only />
   </main>
 </Layout>

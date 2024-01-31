@@ -72,13 +72,16 @@
     }
   }
 
-  document.onkeydown = e => {
-    if (e.key === 's') {
-      searchRef.value.classList.add('active') 
-      inputRef.value.scrollIntoView()
-      setTimeout(() => inputRef.value.focus(), 100)
-    }
-  }
+  // document.onkeydown = e => {
+  //   switch(e.key) {
+  //     case 's':
+  //       console.log('Key:', e.key)
+  //       searchRef.value.classList.add('active') 
+  //       inputRef.value.scrollIntoView()
+  //       setTimeout(() => inputRef.value.focus(), 100)
+  //       break
+  //   }
+  // }
 </script>
 
 <style>
