@@ -1,28 +1,42 @@
 <template>
   <div 
-    id='search' 
-    ref='searchRef'
-    @keyup='handleSearch'
-    class="z-10 flex h-full"
-  >
+    id='container' 
+    ref='containerRef'
+    @keyup='searchHandler'
+    :class="{ show: isShown }"
+    class="
+      flex 
+      z-10 
+      h-full 
+      w-full 
+      absolute 
+      top-[-100%]
+      items-center 
+      justify-center">
     <div class="w-4/5 relative">
       <input 
-        ref='inputRef'
         spellcheck='false' 
         placeholder='search' 
-        class="outline-none border-none w-full"
-      />
-      <ul 
-        ref='searchEnginesRef' 
         class="
-          flex 
-          p-0 
-          left-0 
-          list-none 
-          top-[50px] 
-          m-[1em 0 0 0]">
-        <li v-for='(_, key) in searchEngines'>
-          <p :title='searchEngines[key][1]'>@{{ key }}</p>
+          w-full 
+          p-[0.5em_0]
+          border-none 
+          outline-none 
+          bg-transparent" />
+      <ul class="
+        flex 
+        p-0 
+        left-0 
+        list-none 
+        top-[50px] 
+        m-[1em 0 0 0]">
+        <li class="m-[0_1em_0_0]" 
+          v-for='(_, key) in searchEngines'>
+          <p 
+            class="cursor-default text-xs" 
+            :title='searchEngines[key][1]'>
+            @{{ key }}
+          </p>
         </li>
       </ul>
     </div>
@@ -31,103 +45,36 @@
 
 <script setup>
   import { ref, onMounted } from 'vue'
+  import { searchHandler } from '../js/utils.js'
 
-  const searchEngines = {
-    r: ['https://reddit.com/r/', 'Reddit'],
-    g: ['https://google.com/search?q=', 'Google'],
-    y: ['https://youtube.com/results?search_query=', 'Youtube'],
-    p: ['https://www.pinterest.es/search/pins/?q=', 'Pinterest'],
-    gh: ["https://github.com/search?type=repositories&q=", "GitHub"],
-    np: ['https://search.nixos.org/packages?channel=unstable&query=', 'Nix Packages'],
+  const isShown = ref(false)
+  const containerRef = ref(null)
+
+  const showHandler = () => {
+    const input = containerRef.value.querySelector('input')
+    isShown.value = true
+    input.scrollIntoView()
+    setTimeout(() => input.focus(), 100)
   }
 
-  const inputRef = ref(null)
-  const searchRef = ref(null)
-  const searchEnginesRef = ref(null)
-
-  function handleSearch(e) {
-    let args = e.target.value.split(' ')
-    let prefix = args[0]
-    let engine = searchEngines['g'][0] // Google search by default
-
-    onMounted(() => {
-      searchEnginesRef.value.childNodes.forEach(engine => {
-        if (prefix === engine.firstChild.innerHTML)
-          engine.classList.add('active')
-        else
-          engine.classList.remove('active')
-      })
-    })
-
-    if (e.key === 'Enter') {
-      if (prefix.indexOf('@') === 0) {
-        engine = searchEngines[prefix.substr(1)][0]
-        args = args.slice(1)
-      }
-      window.location = engine + encodeURI(args.join(' '))
-    }
-
-    if (e.keycode === 91) {
-      searchRef.value.classList.remove('active')
-    }
-  }
-
-  // document.onkeydown = e => {
-  //   switch(e.key) {
-  //     case 's':
-  //       console.log('Key:', e.key)
-  //       searchRef.value.classList.add('active') 
-  //       inputRef.value.scrollIntoView()
-  //       setTimeout(() => inputRef.value.focus(), 100)
-  //       break
-  //   }
-  // }
+  onMounted(showHandler)
 </script>
 
 <style>
-  #search {
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% - 2px);
-    visibility: hidden;
-    top: -100%;
+  #container {
     backdrop-filter: blur(5px);
     transition: all .2s ease-in-out;
   }
 
-  #search.active {
-    top: 0;
-    visibility: visible;
-  }
+  #container.show { top: 0; }
 
-  #search input {
-    padding: .5em 0;
-    background: none;
+  input {
     letter-spacing: 1px;
     box-shadow: inset 0 -2px #737373;
     font: 500 22px 'Roboto', sans-serif;
   }
 
-  #search input:focus {
+  input:focus {
     box-shadow: inset 0 -2px #d4be98;
-  }
-
-  #search input::selection {
-    color: #32302f;
-    background: #e78a4e;
-  }
-
-  li { margin: 0 1em 0 0; }
-  li.active {
-    color: #d4be98;
-    font-weight: 700;
-  }
-
-  li p {
-    cursor: default;
-    font-size: 12px;
-    transition: all .2s;
-    font-family: 'Roboto', sans-serif;
   }
 </style>
