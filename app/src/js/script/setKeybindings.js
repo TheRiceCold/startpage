@@ -1,4 +1,4 @@
-import { $keybinds } from '@stores/index'
+import { $keybinds } from '@store/index'
 
 function setKeybinds(e) {
   const binds = $keybinds.value

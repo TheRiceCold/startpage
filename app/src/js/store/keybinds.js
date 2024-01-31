@@ -1,15 +1,7 @@
-import { atom } from 'nanostores'
+import { map } from 'nanostores'
 
-export const keybinds = atom({
-  search: {
-    key: 'o',
-    action: () => {
-      console.log('Search')
-      // searchRef.value.classList.add('active') 
-      // inputRef.value.scrollIntoView()
-      // setTimeout(() => inputRef.value.focus(), 100)
-    }
-  },
+export const $keybinds = map({
+  search: { }, // set at components/Search.vue
 
   // Keys used: ArrowKeys, Game Keys(WASD), Vim Keys (HJKL)
   navigation: {

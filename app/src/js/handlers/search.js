@@ -7,7 +7,7 @@ const searchEngines = {
   np: ['https://search.nixos.org/packages?channel=unstable&query=', 'Nix Packages'],
 }
 
-export function searchHandler({ target, key }) {
+export function handler({ target, key }) {
   let args = target.value.split(' ')
   let prefix = args[0]
   let engine = searchEngines['g'][0]

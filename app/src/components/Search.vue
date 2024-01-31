@@ -1,8 +1,29 @@
+<script setup>
+  import { ref, onMounted } from 'vue'
+  import { handler } from '@handlers/search'
+  import { $keybinds } from '@store/keybinds'
+
+  const isShown = ref(false)
+  const containerRef = ref(null)
+
+  onMounted(() => {
+    $keybinds.setKey('search', {
+      key: 'o',
+      action: () => {
+        const input = containerRef.value.querySelector('input')
+        isShown.value = !isShown.value
+        input.scrollIntoView()
+        setTimeout(() => input.focus(), 100)
+      }
+    })
+  })
+</script>
+
 <template>
   <div 
     id='container' 
     ref='containerRef'
-    @keyup='searchHandler'
+    @keyup='handler'
     :class="{ show: isShown }"
     class="
       flex 
@@ -43,26 +64,8 @@
   </div>
 </template>
 
-<script setup>
-  import { ref, onMounted } from 'vue'
-  import { searchHandler } from '../js/utils.js'
-
-  const isShown = ref(false)
-  const containerRef = ref(null)
-
-  const showHandler = () => {
-    const input = containerRef.value.querySelector('input')
-    isShown.value = true
-    input.scrollIntoView()
-    setTimeout(() => input.focus(), 100)
-  }
-
-  onMounted(showHandler)
-</script>
-
 <style>
   #container {
-    backdrop-filter: blur(5px);
     transition: all .2s ease-in-out;
   }
 

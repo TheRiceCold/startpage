@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import { Search, Bento, ThemeSwitch } from '@components/index.astro'
+import { Search, Bento, ThemeSwitch } from '@components/index'
 ---
 
 <Layout title="Wolly's startpage">
@@ -22,6 +22,6 @@ import { Search, Bento, ThemeSwitch } from '@components/index.astro'
     <Bento />
     <Search client:only />
     <ThemeSwitch client:only />
-    <script src='../js/keybinds.js' />
+    <script src='../js/script/setKeybindings.js' />
   </main>
 </Layout>
