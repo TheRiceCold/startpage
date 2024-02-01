@@ -1,5 +1,5 @@
 import { map } from 'nanostores'
-import { type TKeybindMap } from '@ts/types'
+import type { TKeybindMap } from '@ts/types'
 
 export const $keybinds = map<TKeybindMap>({
   search: { 

@@ -1,4 +1,4 @@
-import { type TSearchEngine } from '@ts/types'
+import type { TSearchEngine } from '@ts/types'
 import { $searchEngines } from '@store/index'
 
 export const handler = (

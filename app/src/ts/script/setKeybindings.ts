@@ -1,6 +1,6 @@
-import { 
-  type TKeybind, 
-  type TKeybindMap 
+import type { 
+  TKeybind, 
+  TKeybindMap 
 } from '@ts/types'
 import { $keybinds } from '@store/index'
 

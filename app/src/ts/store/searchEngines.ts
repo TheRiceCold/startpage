@@ -1,5 +1,5 @@
 import { atom } from 'nanostores'
-import { type TSearchEngine } from '@ts/types'
+import type { TSearchEngine } from '@ts/types'
 
 export const $searchEngines = atom<TSearchEngine[]>([
   {
