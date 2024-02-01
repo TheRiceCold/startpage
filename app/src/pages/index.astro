@@ -4,12 +4,12 @@ import { Search, Bento, ThemeSwitch } from '@components/index'
 ---
 
 <Layout title="Wolly's startpage">
-  <main id='container' 
+  <main
     class="
+    flex 
     container 
     min-w-full 
     min-h-screen
-    flex 
     items-center
     justify-center
 
@@ -22,6 +22,6 @@ import { Search, Bento, ThemeSwitch } from '@components/index'
     <Bento />
     <Search client:only />
     <ThemeSwitch client:only />
-    <script src='../ts/script/setKeybindings.js' />
+    <script src='../ts/script/setKeybindings.ts' />
   </main>
 </Layout>

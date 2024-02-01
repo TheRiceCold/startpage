@@ -1,30 +1,38 @@
-<script setup>
+<script setup lang='ts'>
   import { ref, onMounted } from 'vue'
   import { handler } from '@handlers/search'
   import { $keybinds } from '@store/index'
 
-  const isShown = ref(false)
-  const containerRef = ref(null)
+  const isShown = ref<Boolean>(false)
+  const inputRef = ref<null | HTMLInputElement>(null)
+  const containerRef = ref<null | HTMLDivElement>(null)
+
+  function showHandler() {
+    isShown.value = !isShown.value
+    const input = inputRef.value
+
+    if (input !== null) {
+      input.scrollIntoView()
+      setTimeout(() => input.focus(), 100)
+    }
+  }
 
   onMounted(() => {
     $keybinds.setKey('search', {
-      key: 'o',
-      action: () => {
-        const input = containerRef.value.querySelector('input')
-        isShown.value = !isShown.value
-        input.scrollIntoView()
-        setTimeout(() => input.focus(), 100)
-      }
+      default: {
+        key: 'o',
+        action: showHandler,
+      },
     })
   })
 </script>
 
 <template>
   <div 
-    id='container' 
-    ref='containerRef'
     @keyup='handler'
     :class="{ show: isShown }"
+    id='container' 
+    ref='containerRef'
     class="
       flex 
       z-10 
@@ -36,6 +44,7 @@
       justify-center">
     <div class="w-4/5 relative">
       <input 
+        ref='inputRef'
         spellcheck='false' 
         placeholder='search' 
         class="
@@ -44,22 +53,6 @@
           border-none 
           outline-none 
           bg-transparent" />
-      <ul class="
-        flex 
-        p-0 
-        left-0 
-        list-none 
-        top-[50px] 
-        m-[1em 0 0 0]">
-        <li class="m-[0_1em_0_0]" 
-          v-for='(_, key) in searchEngines'>
-          <p 
-            class="cursor-default text-xs" 
-            :title='searchEngines[key][1]'>
-            @{{ key }}
-          </p>
-        </li>
-      </ul>
     </div>
   </div>
 </template>

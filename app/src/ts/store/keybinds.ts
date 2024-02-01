@@ -1,7 +1,7 @@
 import { map } from 'nanostores'
-import { type TKeybinds } from '@ts/types'
+import { type TKeybindMap } from '@ts/types'
 
-export const $keybinds = map<TKeybinds>({
+export const $keybinds = map<TKeybindMap>({
   search: { 
     default: { },
     newTab: { }

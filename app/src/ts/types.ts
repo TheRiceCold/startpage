@@ -1,8 +1,10 @@
-export type TKeybinds = {
-  [name: string]: {
-    key: string | string[]
-    action: () => void
-  } | TKeybinds
+export type TKeybind = {
+  key: string | string[]
+  action: () => void
+}
+
+export type TKeybindMap = {
+  [name: string]: TKeybind | TKeybindMap
 }
 
 export type TSearchEngine = {
