@@ -2,6 +2,7 @@ import { $keybinds } from '@store/index'
 
 function setKeybinds(e) {
   const binds = $keybinds.value
+
   const execKeybind = bind => {
     const { key } = bind
 

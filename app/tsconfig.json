@@ -6,12 +6,13 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "@js/*": ["src/assets/*"],
-      "@store/*": ["src/ts/store/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@components/*": ["src/components/*"],
+
+      "@ts/*": ["src/ts/*"],
+      "@store/*": ["src/ts/store/*"],
       "@script/*": ["src/ts/script/*"],
       "@handlers/*": ["src/ts/handlers/*"],
-      "@components/*": ["src/components/*"],
     }
   }
 }

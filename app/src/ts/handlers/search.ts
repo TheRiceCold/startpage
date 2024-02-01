@@ -1,63 +1,26 @@
-type TSearchEngine = {
-  prefix: string
-  name: string
-  link: string
-}
+import { type TSearchEngine } from '@ts/types'
+import { $searchEngines } from '@store/index'
 
-const searchEngines: TSearchEngine[] = [
-  {
-    prefix: 'g',
-    name: 'Google',
-    link: 'https://google.com/search?q=',
-  },
-  {
-    prefix: 'r',
-    name: 'Reddit',
-    link: 'https://reddit.com/r/',
-  },
-  {
-    prefix: 'y',
-    name: 'Youtube',
-    link: 'https://youtube.com/results?search_query=',
-  },
-  {
-    prefix: 'p',
-    name: 'Pinterest',
-    link: 'https://www.pinterest.es/search/pins/?q=',
-  },
-  {
-    prefix: 'gh',
-    name: 'GitHub Repo',
-    link: 'https://github.com/search?type=repositories&q=',
-  },
-
-  // Package Managers
-  {
-    prefix: 'np',
-    name: 'Nix Packages',
-    link: 'https://search.nixos.org/packages?channel=unstable&query=',
-  },
-  {
-    prefix: 'npm',
-    name: 'Node Packages',
-    link: 'https://www.npmjs.com/search?q=',
-  },
-]
-
-export const handler = (e: KeyboardEvent)=> {
+export const handler = (e: KeyboardEvent, isNewTab = false)=> {
   const target = e.target as HTMLInputElement
+  const searchEngines: TSearchEngine[] | undefined = $searchEngines.value
 
   let args: string[] = target.value.split(' ')
   let prefix: string = args[0]
-  let engine: TSearchEngine | undefined = searchEngines[0]
+  let engine: TSearchEngine | undefined = searchEngines && searchEngines[0]
 
   if (e.key === 'Enter') {
-    if (prefix.indexOf('/') === 0) {
+    if (prefix.indexOf('/') === 0 && searchEngines !== undefined) {
       args = args.slice(1)
       engine = searchEngines.find(se => se.prefix === prefix.substring(1))
     }
 
-    if (engine !== undefined)
-      window.location.href = engine.link + encodeURI(args.join(' '))
+    if (engine !== undefined) {
+      let link = engine.link + encodeURI(args.join(' '))
+      if (isNewTab)
+        window.open(link, '_blank')
+
+      window.location.href = link
+    }
   }
 }

@@ -1,7 +1,11 @@
 import { map } from 'nanostores'
+import { type TKeybinds } from '@ts/types'
 
-export const $keybinds = map({
-  search: { }, // set at components/Search.vue
+export const $keybinds = map<TKeybinds>({
+  search: { 
+    default: { },
+    newTab: { }
+  }, // set at components/Search.vue
 
   // Keys used: ArrowKeys, Game Keys(WASD), Vim Keys (HJKL)
   navigation: {
