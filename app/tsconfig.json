@@ -2,13 +2,15 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "jsx": "preserve",
+    "allowJs": true,
+    "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
       "@js/*": ["src/assets/*"],
-      "@store/*": ["src/js/store/*"],
+      "@store/*": ["src/ts/store/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@script/*": ["src/js/script/*"],
-      "@handlers/*": ["src/js/handlers/*"],
+      "@script/*": ["src/ts/script/*"],
+      "@handlers/*": ["src/ts/handlers/*"],
       "@components/*": ["src/components/*"],
     }
   }

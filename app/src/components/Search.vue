@@ -1,7 +1,7 @@
 <script setup>
   import { ref, onMounted } from 'vue'
   import { handler } from '@handlers/search'
-  import { $keybinds } from '@store/keybinds'
+  import { $keybinds } from '@store/index'
 
   const isShown = ref(false)
   const containerRef = ref(null)
