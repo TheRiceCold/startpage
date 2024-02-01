@@ -44,12 +44,14 @@ const searchEngines: TSearchEngine[] = [
   },
 ]
 
-export const handler = ({ target, key }: { target: EventTarget, key: string }) => {
-  let args: string = target.value.split(' ')
+export const handler = (e: KeyboardEvent)=> {
+  const target = e.target as HTMLInputElement
+
+  let args: string[] = target.value.split(' ')
   let prefix: string = args[0]
   let engine: TSearchEngine | undefined = searchEngines[0]
 
-  if (key === 'Enter') {
+  if (e.key === 'Enter') {
     if (prefix.indexOf('/') === 0) {
       args = args.slice(1)
       engine = searchEngines.find(se => se.prefix === prefix.substring(1))
