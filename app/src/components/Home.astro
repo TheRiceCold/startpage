@@ -1,0 +1,37 @@
+---
+import Search from './Search.vue'
+import Bento from './bento/Main.astro'
+---
+
+<main
+  class="
+  container 
+  flex 
+  min-w-full 
+  min-h-screen
+  items-center
+  justify-center
+
+  fixed 
+  top-0 
+  left-0 
+  right-0 
+  bottom-0">
+  <Bento />
+  <Search client:only />
+  <!-- <ThemeSwitch client:only /> -->
+</main>
+
+<style>
+  .container {
+    --color: #323133;
+    --accent: #bf263c;
+    --cardtext: #323133;
+    --cardtext2: #3c3b3d;
+    --background: #a9b665;
+    --cardshadow: rgba(0, 0, 0, 0.1);
+
+    color: var(--color);
+    background: var(--background);
+  }
+</style>

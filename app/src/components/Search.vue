@@ -8,6 +8,7 @@
   const containerRef = ref<null | HTMLDivElement>(null)
 
   function showHandler() {
+    console.log('showHandler')
     isShown.value = !isShown.value
     const input = inputRef.value
 
