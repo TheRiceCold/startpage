@@ -4,14 +4,14 @@ import {
 } from '@ts/types'
 import { $keybinds } from '@store/index'
 
-function setKeybinds(e: KeyboardEvent) {
+function setKeybinds(event: KeyboardEvent) {
   const binds: TKeybindMap | undefined = $keybinds.value
 
   const execKeybind = (bind: TKeybind)=> {
     const { key } = bind
 
     const runAction = (k: string) => {
-      if (e.key === k) 
+      if (event.key === k) 
         bind.action()
     }
 

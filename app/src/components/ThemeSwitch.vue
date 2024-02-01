@@ -16,25 +16,33 @@
 </template>
 
 <script setup lang='ts'>
-  import { ref } from 'vue'
+  import { ref, onMounted } from 'vue'
 
+  const ANIMATION_TIME = 1000
   const buttonRef = ref<HTMLButtonElement | null>(null)
   const query = (q: string) => document.querySelector(q)
 
+  const buttonEnabled = ref(true)
+
   function handleClick() {
-    query('.clip').innerHTML = query('.container').outerHTML
+    if (!buttonEnabled.value) return
+    buttonEnabled.value = false
+
+    query('.clip').innerHTML = document.querySelector('.container').outerHTML
+    
     query('.clip .container').classList.toggle('dark')
 
     // Animation CSS defined in tailwind.config.js
     query('.clip').classList.add('animate-clip') 
     
-    // Replace container with clip html
     setTimeout(() => {
-      query('.container').outerHTML = query('.clip').innerHTML 
-    }, 1000)
+      // Replace container with clip html
+      document.querySelector('.container').outerHTML = document.querySelector('.clip').innerHTML 
+      buttonEnabled.value = true
+    }, ANIMATION_TIME)
   }
 
-  document.body.addEventListener('click', handleClick)
+  onMounted(() => document.body.addEventListener('click', handleClick))
 </script>
 
 <style> 
