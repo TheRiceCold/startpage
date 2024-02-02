@@ -1,6 +1,7 @@
 ---
 import Search from './Search.vue'
 import Bento from './bento/Main.astro'
+import Colorschemes from './Colorschemes.vue'
 ---
 
 <main
@@ -19,6 +20,7 @@ import Bento from './bento/Main.astro'
   bottom-0">
   <Bento />
   <Search client:only />
+  <Colorschemes client:only />
   <!-- <ThemeSwitch client:only /> -->
 </main>
 
@@ -28,7 +30,7 @@ import Bento from './bento/Main.astro'
     --accent: #bf263c;
     --cardtext: #323133;
     --cardtext2: #3c3b3d;
-    --background: #a9b665;
+    --background: #282828;
     --cardshadow: rgba(0, 0, 0, 0.1);
 
     color: var(--color);
